@@ -1,11 +1,13 @@
 package com.spmongo.resouce;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import java.util.Map;
+import java.util.HashMap;
 
 import com.spmongo.domain.User;
 import com.spmongo.dto.UserDTO;
@@ -49,4 +53,22 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Map<String, String>> delete(@PathVariable String id) {
+		
+		Map<String, String> response = new HashMap<>();
+		User user = userService.findById(id);
+		
+		if(user != null) {
+			userService.delete(id);
+			response.put("message", "Deletado com sucesso");
+		} 
+		 
+
+		 response.put("message", "Deletado com sucesso");
+		 return ResponseEntity.ok(response); 
+		
+	}
+	
+	
 }
