@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.spmongo.domain.Post;
 import com.spmongo.domain.User;
+import com.spmongo.dto.AuthorDTO;
 import com.spmongo.repository.PostRepository;
 import com.spmongo.repository.UserRepository;
 
@@ -38,8 +39,8 @@ public class Instantiation implements CommandLineRunner {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para Fortaleza", maria);
-		Post post2 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para São Paulo", maria);
+		Post post1 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para Fortaleza", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para São Paulo", new AuthorDTO(maria));
 		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 		
