@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.util.Map;
 import java.util.HashMap;
 
+import com.spmongo.domain.Post;
 import com.spmongo.domain.User;
 import com.spmongo.dto.UserDTO;
 import com.spmongo.service.UserService;
@@ -65,12 +66,9 @@ public class UserResource {
 			response.put("message", "Deletado com sucesso");
 		} 
 		 
-
 		 response.put("message", "Deletado com sucesso");
 		 return ResponseEntity.ok(response); 
-		
 	}
-	
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Void> update(@RequestBody UserDTO objDto, @PathVariable String id) {
@@ -79,6 +77,14 @@ public class UserResource {
 		obj = userService.update(obj);
 		return ResponseEntity.noContent().build();
 	}
+	
+	
+	@GetMapping("/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User user = userService.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
+	}
+	
 	
 	
 }
