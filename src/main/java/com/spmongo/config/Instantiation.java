@@ -41,7 +41,7 @@ public class Instantiation implements CommandLineRunner {
 		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 		
 		Post post1 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para Fortaleza", new AuthorDTO(maria));
-		Post post2 = new Post(null, sdf.parse("21/03/2025"), "Partiu viagem", "Partiu viajar para São Paulo", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("18/03/2025"), "Partiu viagem", "Partiu viajar para São Paulo", new AuthorDTO(maria));
 		
 		
 		CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("21/03/2025"), new AuthorDTO(alex));
